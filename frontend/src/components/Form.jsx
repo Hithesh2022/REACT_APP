@@ -22,14 +22,14 @@ const [formData,setFormData]=useState({
         event.preventDefault();
         axios.post("http://localhost:3001/",formData) 
         .then((response) => {
-            // Handle the response if needed
+          
             console.log(response.data);
-            // Display a success message or perform other actions here
+           
           })
           .catch((error) => {
-            // Handle errors if necessary
+            
             console.error(error);
-            // Display an error message or perform other error-handling actions here
+           
           });
           setFormData({
             name:"",
@@ -37,23 +37,77 @@ const [formData,setFormData]=useState({
             mobilenumber:"",
             hobbies:"",
             });
+            window.location.reload();
 
       }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} method="POST">
-        <label>NAME</label>
-    <input type="text" placeholder="Enter your name"  onChange={handleChange} value={formData.name} name="name"/>
-        <label>EMAIL</label>
-        <input type="email" placeholder="Enter your email"  onChange={handleChange} value={formData.email} name="email"/>
-        <label>MOBILE NUMBER</label>
-        <input type="number" placeholder="Enter your mobile number" onChange={handleChange} value={formData.mobilenumber} name="mobilenumber" />
-       <label>HOBBIE</label>
-        <input type="text" placeholder="Enter your HOBBIES" onChange={handleChange} value={formData.hobbies} name="hobbies"/>
-        <button type="submit" >Submit</button>
+    <div className="container mt-5">
+    <div className="card p-3">
+      <form onSubmit={handleSubmit}>
+        <div className="row mb-3">
+          <label className="col-sm-3 col-form-label">Name</label>
+          <div className="col-sm-9">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter your name"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="row mb-3">
+          <label className="col-sm-3 col-form-label">Email</label>
+          <div className="col-sm-9">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter your email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="row mb-3">
+          <label className="col-sm-3 col-form-label">Mobile Number</label>
+          <div className="col-sm-9">
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Enter your mobile number"
+              name="mobilenumber"
+              value={formData.mobilenumber}
+              pattern="[0-9]{10}"
+              required
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="row mb-3">
+          <label className="col-sm-3 col-form-label">Hobbies</label>
+          <div className="col-sm-9">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter your hobbies"
+              name="hobbies"
+              required
+              value={formData.hobbies}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="d-flex justify-content-center">
+          <button type="submit" className="btn btn-primary" style={{ width: '150px' }}>SAVE</button>
+        </div>
       </form>
     </div>
+  </div>
   );
 }
 export default Form;
