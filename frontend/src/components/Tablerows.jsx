@@ -1,5 +1,7 @@
 import React from 'react';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import "../App.css"
+import 'material-icons/iconfont/material-icons.css';
 const TableRows = ({ data, selectedRows, handleCheckboxChange, handleDelete }) => {
   return (
     <tbody>
@@ -18,7 +20,7 @@ const TableRows = ({ data, selectedRows, handleCheckboxChange, handleDelete }) =
           <td>{item.email}</td>
           <td>{item.hobbies}</td>
           <td>
-            <button onClick={() => handleDelete(item._id)}>Delete</button>
+            <button onClick={() => handleDelete(item._id)}   className="button"><DeleteIcon/></button>
             {/*  */}
           </td>
         </tr>

@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+.button {
+  background-color: transparent; /* Make the background transparent to remove default button styles */
+  border: none; /* Remove borders to have a cleaner appearance */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.button:hover .MuiSvgIcon-root {
+  color: orangered; /* Change the icon color to yellow when the button is hovered */
+}
+
