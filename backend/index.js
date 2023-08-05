@@ -9,7 +9,8 @@ app.use(cors());//using cros to connect frontend and backend
 app.use(body.urlencoded({extended:true}));
 app.use(body.json());//using body parser json  to parse the json  data
 //connecting to mongodb using mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/mydatabase?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.1',{useNewUrlParser:true,useUnifiedTopology:true})   
+const password=process.env.PASSWORD;
+mongoose.connect(`mongodb+srv://admin:${password}@cluster0.lwpeyjs.mongodb.net/mydatabase?retryWrites=true&w=majority`,{useNewUrlParser:true,useUnifiedTopology:true})   
 //creating schema for the database
 const UsersSchema={
     name:String,
