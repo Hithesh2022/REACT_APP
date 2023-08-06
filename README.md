@@ -22,8 +22,8 @@ step6) in backend folder type node index.js or nodemon index.js (reccomemend nod
 
  
 
-#DEMO Link of REACT APP 
+# DEMO OF FRONTEND REACT
 https://frontend-k89z.onrender.com/
 
-#DEMO Link of Backend Server
+# DEMO OF BACKEND SERVER
 https://nodemongo-back.onrender.com
