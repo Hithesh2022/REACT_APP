@@ -112,6 +112,7 @@ app.post('/',async(req,res)=>{
           to: 'hitheshkp100@gmail.com', 
           subject: 'Selected Data',
           text: JSON.stringify(data, null, 2), 
+          messageId: `${Date.now()}@your-domain.com`
         };
       
         // Sending  the email
