@@ -70,15 +70,15 @@ app.post('/',async(req,res)=>{
         }
     }
     )
-    app.patch('/:id',async(req,res)=>{
+    app.put('/:id',async(req,res)=>{
     
-        const ID = req.params.id;
-        console.log(ID);
+        const id = req.params.id;
+        
         try {
-            const Id= Number(ID);
-            console.log(Id);
+          
+            
             console.log(req.body);
-        const result=await Users.updateOne( { ID: Id }, { $set: req.body } );
+        const result=await Users.updateOne( { _id: id }, { $set: req.body } );
         
         console.log(result);
         if(result)
@@ -95,9 +95,16 @@ app.post('/',async(req,res)=>{
 
     app.post('/sendEmail', (req, res) => {
         // Get the data from the request body
+        const selectedRows = req.body;
+        if (!selectedRows || selectedRows.length === 0) {
+          return res.status(400).json({ message: 'No selected rows found.' });
+        }
         const data = req.body;
       console.log(data);
-        
+      let emailContent = '';
+      selectedRows.forEach((row) => {
+        emailContent += `name: ${row.name}\n ph: ${row.mobilenumber}\n email: ${row.email}\n hobbie:${row.hobbies}\n`;
+      });
         const transporter = nodemailer.createTransport({
           service:'Gmail',
           auth: {
@@ -111,7 +118,8 @@ app.post('/',async(req,res)=>{
           from: process.env.USER, // 
           to: 'hitheshkp100@gmail.com', 
           subject: 'Selected Data',
-          text: JSON.stringify(data, null, 2), 
+          //text: JSON.stringify(data, null, 2), 
+          text:emailContent,
           messageId: `${Date.now()}@your-domain.com`
         };
       

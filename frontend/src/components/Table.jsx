@@ -25,6 +25,7 @@ function Table(props) {
   }, []);
 
   const handleUpdate = (id, updatedData) => {
+    console.log(id, updatedData);
     axios.put(`http://localhost:3001/${id}`, updatedData)
       .then((response) => {
         console.log('Data updated successfully:', response.data);
@@ -96,6 +97,10 @@ function Table(props) {
         });
         setShowMessage(false);
         setSuccessMessage('Email sent successfully!');
+        setTimeout(() => {
+          // Reload the page
+          window.location.reload();
+        }, 1000);
       }
       };
       useEffect(() => {
