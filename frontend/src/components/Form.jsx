@@ -2,6 +2,7 @@ import React ,{useState} from "react";
 import axios from "axios";
 
 function Form() {
+ 
 const [formData,setFormData]=useState({
     name:"",
     email:"",
@@ -56,6 +57,7 @@ const [formData,setFormData]=useState({
               required
               value={formData.name}
               onChange={handleChange}
+              autoComplete="off"
             />
           </div>
         </div>
@@ -70,6 +72,7 @@ const [formData,setFormData]=useState({
               required
               value={formData.email}
               onChange={handleChange}
+              autoComplete="off"
             />
           </div>
         </div>
@@ -82,9 +85,10 @@ const [formData,setFormData]=useState({
               placeholder="Enter your mobile number"
               name="mobilenumber"
               value={formData.mobilenumber}
-              pattern="[0-9]{10}"
+              
               required
               onChange={handleChange}
+              autoComplete="off"
             />
           </div>
         </div>
@@ -99,6 +103,7 @@ const [formData,setFormData]=useState({
               required
               value={formData.hobbies}
               onChange={handleChange}
+              autoComplete="off"
             />
           </div>
         </div>

@@ -2,6 +2,8 @@ import React,{useState} from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "../App.css"
 import 'material-icons/iconfont/material-icons.css';
+import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const EditableField = ({ value, isEditing, onChange }) => {
   return isEditing ? (
@@ -90,14 +92,14 @@ const TableRow = ({
         {isEditing ? (
           <>
             <button onClick={handleSave} className="button">
-              Save
+              <SaveIcon/>
             </button>
             <button onClick={handleCancel} className="button">
-              Cancel
+              <CancelIcon/>
             </button>
           </>
         ) : (
-          <button onClick={handleEdit} className="button">
+          <button onClick={handleEdit} className="btn btn-primary ">
             Update
           </button>
         )}

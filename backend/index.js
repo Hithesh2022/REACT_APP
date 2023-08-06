@@ -96,6 +96,8 @@ app.post('/',async(req,res)=>{
     app.post('/sendEmail', (req, res) => {
         // Get the data from the request body
         const selectedRows = req.body;
+        console.log(selectedRows);
+
         if (!selectedRows || selectedRows.length === 0) {
           return res.status(400).json({ message: 'No selected rows found.' });
         }
@@ -103,7 +105,7 @@ app.post('/',async(req,res)=>{
       console.log(data);
       let emailContent = '';
       selectedRows.forEach((row) => {
-        emailContent += `name: ${row.name}\n ph: ${row.mobilenumber}\n email: ${row.email}\n hobbie:${row.hobbies}\n`;
+        emailContent += `Name:\t${row.name}\n Mobile :\t ${row.mobilenumber}\n Email:\t${row.email}\n Hobbie:\t${row.hobbies}\n\n\n`;
       });
         const transporter = nodemailer.createTransport({
           service:'Gmail',
