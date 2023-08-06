@@ -5,13 +5,19 @@ import TableButtons from './TableButton';
 
 
 function Table(props) {
+  {/* sets data from database */}
   const [data, setData] = useState([]);
 
+  {/* check checkbox rows */}
   const [selectedRows, setSelectedRows] = useState([]);
 
+//check if email is sent
   const [successMessage, setSuccessMessage] = useState('');
 
+  // If no checkboxes are selected, show the message
   const [showMessage, setShowMessage] = useState(false);
+
+  //get data from database
   useEffect(() => {
    
     axios.get('http://localhost:3001/')
@@ -24,6 +30,7 @@ function Table(props) {
       });
   }, []);
 
+  //handle update button 
   const handleUpdate = (id, updatedData) => {
     console.log(id, updatedData);
     axios.put(`http://localhost:3001/${id}`, updatedData)
@@ -61,7 +68,7 @@ function Table(props) {
   };
   
   
-   
+   //check checkbox rows
     function  handleCheckboxChange  (event, id)  {
         const selectedRow = data.find((item) => item.ID === id);
         if (event.target.checked) {

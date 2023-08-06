@@ -6,12 +6,20 @@ const app=express();
 const cors=require('cors');
 const nodemailer = require('nodemailer');
 const port=process.env.PORT || 3001;
+const password=process.env.PASSWORD;
+
 app.use(cors());//using cros to connect frontend and backend
+
+
 app.use(body.urlencoded({extended:true}));
+
 app.use(body.json());//using body parser json  to parse the json  data
 //connecting to mongodb using mongoose
-const password=process.env.PASSWORD;
+
+
 mongoose.connect(`mongodb+srv://admin:${password}@cluster0.lwpeyjs.mongodb.net/mydatabase?retryWrites=true&w=majority`,{useNewUrlParser:true,useUnifiedTopology:true})   
+
+
 //creating schema for the database
 const UsersSchema={
     ID:Number,
@@ -20,8 +28,14 @@ const UsersSchema={
     mobilenumber:Number,
     hobbies:String,
 }
-let id=1;
+
+
+let id=1;//serial number for the data
+
+//creating model for the schema
 const Users=mongoose.model('User',UsersSchema);
+
+//save data to the database
 app.post('/',async(req,res)=>{   
     try {
         const user = new Users({
@@ -32,6 +46,7 @@ app.post('/',async(req,res)=>{
           hobbies: req.body.hobbies,
         });
         id++;
+
          await user.save();
         console.log('Data saved');
         console.log(req.body);
@@ -42,6 +57,8 @@ app.post('/',async(req,res)=>{
       }
     });
 
+
+    //display data to frontend
     app.get('/',async(req,res)=>{
         try{
             const user=await Users.find();
@@ -53,6 +70,8 @@ app.post('/',async(req,res)=>{
         }
     }
     )
+
+    //delete data from database
     app.delete('/:id',async(req,res)=>{
         const userId = req.params.id;
         try {
@@ -70,13 +89,16 @@ app.post('/',async(req,res)=>{
         }
     }
     )
+
+
+
+    //update data in database
     app.put('/:id',async(req,res)=>{
     
         const id = req.params.id;
         
         try {
-          
-            
+    
             console.log(req.body);
         const result=await Users.updateOne( { _id: id }, { $set: req.body } );
         
@@ -93,6 +115,11 @@ app.post('/',async(req,res)=>{
     }
     )
 
+
+
+//sending email
+
+
     app.post('/sendEmail', (req, res) => {
         // Get the data from the request body
         const selectedRows = req.body;
@@ -103,10 +130,15 @@ app.post('/',async(req,res)=>{
         }
         const data = req.body;
       console.log(data);
+
+        //parsing json object to string
       let emailContent = '';
       selectedRows.forEach((row) => {
         emailContent += `Name:\t${row.name}\n Mobile :\t ${row.mobilenumber}\n Email:\t${row.email}\n Hobbie:\t${row.hobbies}\n\n\n`;
       });
+
+
+
         const transporter = nodemailer.createTransport({
           service:'Gmail',
           auth: {
@@ -118,7 +150,7 @@ app.post('/',async(req,res)=>{
        
         const mailOptions = {
           from: process.env.USER, // 
-          to: 'hitheshkp100@gmail.com', 
+          to: 'info@redpositive.in', 
           subject: 'Selected Data',
           //text: JSON.stringify(data, null, 2), 
           text:emailContent,
@@ -134,6 +166,8 @@ app.post('/',async(req,res)=>{
             console.log('Email sent:', info.response);
             res.status(200).json({ message: 'Email sent successfully' });
           }
+
+
         });
       });
       

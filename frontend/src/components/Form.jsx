@@ -2,7 +2,8 @@ import React ,{useState} from "react";
 import axios from "axios";
 
 function Form() {
- 
+
+ //set form data
 const [formData,setFormData]=useState({
     name:"",
     email:"",
@@ -18,6 +19,8 @@ const [formData,setFormData]=useState({
         }));
        
       }
+
+      //send data to backend
       function handleSubmit(event){
         console.log(formData);
         event.preventDefault();

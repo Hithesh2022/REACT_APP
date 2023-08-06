@@ -5,6 +5,7 @@ import 'material-icons/iconfont/material-icons.css';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
 
+//set editable field when clicked on update button
 const EditableField = ({ value, isEditing, onChange }) => {
   return isEditing ? (
     <input type="text" value={value} onChange={onChange} />
