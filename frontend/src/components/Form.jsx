@@ -24,7 +24,7 @@ const [formData,setFormData]=useState({
       function handleSubmit(event){
         console.log(formData);
         event.preventDefault();
-        axios.post("http://localhost:3001/",formData) 
+        axios.post("https://nodemongo-back.onrender.com/",formData) 
         .then((response) => {
           
             console.log(response.data);
