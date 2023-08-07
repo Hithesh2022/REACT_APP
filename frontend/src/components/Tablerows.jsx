@@ -119,6 +119,13 @@ const TableRows = ({ data, selectedRows, handleCheckboxChange, handleDelete, han
             Press on + to Add
           </td>
         </tr>
+      ) : !data.length ? (
+        // Loading message when data is empty (during data fetching)
+        <tr>
+          <td colSpan="8" style={{ textAlign: "center" }}>
+            Loading...
+          </td>
+        </tr>
       ) : (
         // Regular rows when data array is not empty
         data.map((item) => (
