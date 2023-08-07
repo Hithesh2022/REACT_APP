@@ -20,7 +20,7 @@ function Table(props) {
   //get data from database
   useEffect(() => {
    
-    axios.get('http://localhost:3001/')
+    axios.get('https://nodemongo-back.onrender.com/')
       .then((response) => {
         setData(response.data);
         
@@ -33,7 +33,7 @@ function Table(props) {
   //handle update button 
   const handleUpdate = (id, updatedData) => {
     console.log(id, updatedData);
-    axios.put(`http://localhost:3001/${id}`, updatedData)
+    axios.put(`https://nodemongo-back.onrender.com/${id}`, updatedData)
       .then((response) => {
         console.log('Data updated successfully:', response.data);
         // Update the data in the state after successful update
@@ -48,12 +48,12 @@ function Table(props) {
 
   const handleDelete = (id) => {
   
-    axios.delete(`http://localhost:3001/${id}`)
+    axios.delete(`https://nodemongo-back.onrender.com/${id}`)
       .then((response) => {
        
         console.log(response.data);
   
-        axios.get('http://localhost:3001/')
+        axios.get('https://nodemongo-back.onrender.com/')
           .then((response) => {
             setData(response.data);
           })
@@ -94,7 +94,7 @@ function Table(props) {
           setSuccessMessage('');
         } else {
         
-        axios.post('http://localhost:3001/sendEmail', selectedRows)
+        axios.post('https://nodemongo-back.onrender.com/sendemail', selectedRows)
         .then((response) => {
           console.log('Email sent successfully:', response.data);
         })
