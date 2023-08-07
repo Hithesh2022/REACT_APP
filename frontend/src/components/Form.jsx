@@ -21,28 +21,23 @@ const [formData,setFormData]=useState({
       }
 
       //send data to backend
-      function handleSubmit(event){
+      async function handleSubmit(event) {
         console.log(formData);
         event.preventDefault();
-        axios.post("https://nodemongo-back.onrender.com/",formData) 
-        .then((response) => {
-          
-            console.log(response.data);
-           
-          })
-          .catch((error) => {
-            
-            console.error(error);
-           
-          });
+        try {
+          const response = await axios.post("https://nodemongo-back.onrender.com/", formData);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        } finally {
           setFormData({
-            name:"",
-            email:"",
-            mobilenumber:"",
-            hobbies:"",
-            });
-            window.location.reload();
-
+            name: "",
+            email: "",
+            mobilenumber: "",
+            hobbies: "",
+          });
+          window.location.reload();
+        }
       }
 
   return (
